@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: skadi
+    id: '4'
+  name: skadi
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      app: skadi
+  template:
+    metadata:
+      labels:
+        app: skadi
+      name: skadi
+    spec:
+      affinity: null
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: skadi-container
+        resources:
+          requests:
+            cpu: 200m
+            ephemeral-storage: 0Gi
+            memory: 700Mi

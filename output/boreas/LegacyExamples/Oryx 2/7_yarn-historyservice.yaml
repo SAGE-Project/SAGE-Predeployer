@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: yarn-historyservice
+    id: '7'
+  name: yarn-historyservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yarn-historyservice
+  template:
+    metadata:
+      labels:
+        app: yarn-historyservice
+      name: yarn-historyservice
+    spec:
+      affinity: null
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: yarn-historyservice-container
+        resources:
+          requests:
+            cpu: 240m
+            ephemeral-storage: 0Gi
+            memory: 490Mi
+      schedulerName: boreas-scheduler

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gateway
+    id: '3'
+  name: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+      name: gateway
+    spec:
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: gateway-container
+        resources:
+          requests:
+            cpu: 3980m
+            ephemeral-storage: 0Gi
+            memory: 4096Mi
+      schedulerName: boreas-scheduler

@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: balancer
+    id: '1'
+  name: balancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: balancer
+  template:
+    metadata:
+      labels:
+        app: balancer
+      name: balancer
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - apache
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - nginx
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - idsserver
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - idsagent
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: balancer-container
+        resources:
+          requests:
+            cpu: 980m
+            ephemeral-storage: 0Gi
+            memory: 2048Mi
+      schedulerName: boreas-scheduler

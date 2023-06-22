@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hdfs-datanode
+    id: '5'
+  name: hdfs-datanode
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hdfs-datanode
+  template:
+    metadata:
+      labels:
+        app: hdfs-datanode
+      name: hdfs-datanode
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - spark-worker
+            topologyKey: kubernetes.io/hostname
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - hdfs-datanode
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: hdfs-datanode-container
+        resources:
+          requests:
+            cpu: 1000m
+            ephemeral-storage: 3Gi
+            memory: 2000Mi

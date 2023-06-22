@@ -1,0 +1,121 @@
+{
+  "application": "testa-boreas",
+  "comment-general": "",
+  "components": [
+    {
+      "id": 1,
+      "name": "simple",
+      "Compute": {
+        "CPU": 180,
+        "GPU": "false",
+        "Memory": 750
+      },
+      "Storage": {
+        "StorageType": "HDD",
+        "StorageSize": 500
+      },
+      "Network": {},
+      "keywords": [],
+      "operatingSystem": "Linux",
+      "preferences": {}
+    }
+  ],
+  "IP": {
+    "publicIPs": 1,
+    "IPType": "IP4"
+  },
+  "restrictions": [
+    {
+      "type": "LowerBound",
+      "compsIdList": [
+        1
+      ],
+      "bound": 20
+    }
+  ],
+  "output": {
+    "min_price": 2400,
+    "type_of_sym_br": "FVPR",
+    "time (secs)": 5.2043468952178955,
+    "types_of_VMs": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "prices_of_VMs": [
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120
+    ],
+    "VMs specs": [
+      {
+        "s-1vcpu-2gb": {
+          "cpu": 300,
+          "memory": 1150,
+          "storage": 42000,
+          "operatingSystem": "Linux",
+          "price": 120,
+          "id": 1
+        }
+      }
+    ],
+    "assign_matr": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+    "application": "BatchTest",
+    "comment-general": "",
+    "components": [
+        {
+            "id": 1,
+            "name": "comp1",
+            "Compute": {
+                "CPU": 500,
+                "GPU": "false",
+                "Memory": 100
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 2,
+            "name": "comp2",
+            "Compute": {
+                "CPU": 500,
+                "GPU": "false",
+                "Memory": 100
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 3,
+            "name": "comp3",
+            "Compute": {
+                "CPU": 1200,
+                "GPU": "false",
+                "Memory": 100
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        }
+    ],
+    "IP": {
+        "publicIPs": 1,
+        "IPType": "IP4"
+    },
+    "restrictions": [
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                1
+            ],
+            "bound": 1
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                2
+            ],
+            "bound": 1
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                3
+            ],
+            "bound": 1
+        }
+    ],
+    "output": {
+        "min_price": 360,
+        "type_of_sym_br": "FVPR",
+        "time (secs)": 0.23236608505249023,
+        "types_of_VMs": [
+            4,
+            4
+        ],
+        "prices_of_VMs": [
+            180,
+            180
+        ],
+        "VMs specs": [
+            {
+                "s-2vcpu-2gb": {
+                    "cpu": 1250,
+                    "memory": 1150,
+                    "storage": 51000,
+                    "operatingSystem": "Linux",
+                    "price": 180,
+                    "id": 4
+                }
+            }
+        ],
+        "assign_matr": [
+            [
+                0,
+                1
+            ],
+            [
+                0,
+                1
+            ],
+            [
+                1,
+                0
+            ]
+        ]
+    }
+}

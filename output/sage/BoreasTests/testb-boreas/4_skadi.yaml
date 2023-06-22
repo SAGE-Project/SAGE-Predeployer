@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: skadi
+    id: '4'
+  name: skadi
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      app: skadi
+  template:
+    metadata:
+      labels:
+        app: skadi
+      name: skadi
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '0'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '1'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '2'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '3'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '4'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '5'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '6'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '7'
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: skadi-container
+        resources:
+          requests:
+            cpu: 200m
+            ephemeral-storage: 0Gi
+            memory: 800Mi

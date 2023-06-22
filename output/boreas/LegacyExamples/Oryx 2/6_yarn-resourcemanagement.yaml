@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: yarn-resourcemanagement
+    id: '6'
+  name: yarn-resourcemanagement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yarn-resourcemanagement
+  template:
+    metadata:
+      labels:
+        app: yarn-resourcemanagement
+      name: yarn-resourcemanagement
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - hdfs-namenode
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - hdfs-secondarynamenode
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - yarn-historyservice
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: yarn-resourcemanagement-container
+        resources:
+          requests:
+            cpu: 1240m
+            ephemeral-storage: 1Gi
+            memory: 1990Mi
+      schedulerName: boreas-scheduler

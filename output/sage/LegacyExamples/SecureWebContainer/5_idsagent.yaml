@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: idsagent
+    id: '5'
+  name: idsagent
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: idsagent
+  template:
+    metadata:
+      labels:
+        app: idsagent
+      name: idsagent
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '2'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '3'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '4'
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - idsagent
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: idsagent-container
+        resources:
+          requests:
+            cpu: 1000m
+            ephemeral-storage: 0Gi
+            memory: 256Mi

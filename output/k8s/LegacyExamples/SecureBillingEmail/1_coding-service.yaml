@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: coding-service
+    id: '1'
+  name: coding-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coding-service
+  template:
+    metadata:
+      labels:
+        app: coding-service
+      name: coding-service
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - security-manager
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - gateway
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - sqlserver
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - loadbalancer
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: coding-service-container
+        resources:
+          requests:
+            cpu: 4000m
+            ephemeral-storage: 1Gi
+            memory: 4096Mi

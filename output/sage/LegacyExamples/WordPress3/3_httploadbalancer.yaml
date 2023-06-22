@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: httploadbalancer
+    id: '4'
+  name: httploadbalancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httploadbalancer
+  template:
+    metadata:
+      labels:
+        app: httploadbalancer
+      name: httploadbalancer
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '4'
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - wordpress
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - mysql
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - varnish
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: httploadbalancer-container
+        resources:
+          requests:
+            cpu: 4000m
+            ephemeral-storage: 0Gi
+            memory: 2048Mi

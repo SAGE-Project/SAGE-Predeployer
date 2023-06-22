@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: loadbalancer
+    id: '5'
+  name: loadbalancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadbalancer
+  template:
+    metadata:
+      labels:
+        app: loadbalancer
+      name: loadbalancer
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '1'
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - gateway
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - sqlserver
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: loadbalancer-container
+        resources:
+          requests:
+            cpu: 4000m
+            ephemeral-storage: 0Gi
+            memory: 2048Mi

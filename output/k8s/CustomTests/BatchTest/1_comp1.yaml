@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: comp1
+    id: '1'
+  name: comp1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comp1
+  template:
+    metadata:
+      labels:
+        app: comp1
+      name: comp1
+    spec:
+      affinity: null
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: comp1-container
+        resources:
+          requests:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 100Mi

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: yarn-nodemanager
+    id: '8'
+  name: yarn-nodemanager
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yarn-nodemanager
+  template:
+    metadata:
+      labels:
+        app: yarn-nodemanager
+      name: yarn-nodemanager
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - spark-worker
+            topologyKey: kubernetes.io/hostname
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - yarn-nodemanager
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: yarn-nodemanager-container
+        resources:
+          requests:
+            cpu: 1000m
+            ephemeral-storage: 2Gi
+            memory: 2000Mi

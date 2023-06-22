@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: security-manager
+    id: '2'
+  name: security-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: security-manager
+  template:
+    metadata:
+      labels:
+        app: security-manager
+      name: security-manager
+    spec:
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: security-manager-container
+        resources:
+          requests:
+            cpu: 2000m
+            ephemeral-storage: 0Gi
+            memory: 2048Mi

@@ -1,0 +1,130 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: simple
+    id: '1'
+  name: simple
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: simple
+  template:
+    metadata:
+      labels:
+        app: simple
+      name: simple
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '0'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '1'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '2'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '3'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '4'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '5'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '6'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '7'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '8'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '9'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '10'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '11'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '12'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '13'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '14'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '15'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '16'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '17'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '18'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '19'
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: simple-container
+        resources:
+          requests:
+            cpu: 180m
+            ephemeral-storage: 0.5Gi
+            memory: 750Mi

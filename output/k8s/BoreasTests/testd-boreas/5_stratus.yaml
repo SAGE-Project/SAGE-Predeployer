@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: stratus
+    id: '5'
+  name: stratus
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: stratus
+  template:
+    metadata:
+      labels:
+        app: stratus
+      name: stratus
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - stratus
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: stratus-container
+        resources:
+          requests:
+            cpu: 200m
+            ephemeral-storage: 0Gi
+            memory: 800Mi

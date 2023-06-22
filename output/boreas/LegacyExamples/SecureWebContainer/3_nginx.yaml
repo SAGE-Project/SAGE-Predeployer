@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+    id: '3'
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+      name: nginx
+    spec:
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: nginx-container
+        resources:
+          requests:
+            cpu: 1980m
+            ephemeral-storage: 1Gi
+            memory: 2048Mi
+      schedulerName: boreas-scheduler

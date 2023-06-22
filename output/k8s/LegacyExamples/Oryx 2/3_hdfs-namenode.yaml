@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hdfs-namenode
+    id: '3'
+  name: hdfs-namenode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hdfs-namenode
+  template:
+    metadata:
+      labels:
+        app: hdfs-namenode
+      name: hdfs-namenode
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - hdfs-secondarynamenode
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: hdfs-namenode-container
+        resources:
+          requests:
+            cpu: 2000m
+            ephemeral-storage: 2Gi
+            memory: 3800Mi

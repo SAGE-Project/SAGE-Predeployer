@@ -1,0 +1,258 @@
+{
+    "application": "WordPress3",
+    "comment-general": "From the Zephyrus-ASE paper: at least 3 replicas of Wordpress or at least 7 DNS (we can not capture OR in the UI, we have here the 3 Wordpress replicas); Answer: minimum 4VMs",
+    "components": [
+        {
+            "id": 1,
+            "name": "WordPress",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 512
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 2,
+            "name": "MySQL",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 512
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 2000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 3,
+            "name": "DNSLoadBalancer",
+            "comments": "As load balancers, either DNS or HTTP",
+            "Compute": {
+                "CPU": 4000,
+                "GPU": "false",
+                "Memory": 2048
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 4,
+            "name": "HTTPLoadBalancer",
+            "Compute": {
+                "CPU": 4000,
+                "GPU": "false",
+                "Memory": 2048
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 5,
+            "name": "Varnish",
+            "Compute": {
+                "CPU": 4000,
+                "GPU": "false",
+                "Memory": 4000
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        }
+    ],
+    "IP": {
+        "publicIPs": 1,
+        "IPType": "IP4"
+    },
+    "comment-restrictions": "RequireProvideDependency to be read as: for 1 instance of component with id 2 there must be at least ",
+    "restrictions": [
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                1
+            ],
+            "bound": 3
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                2
+            ],
+            "bound": 2
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                5
+            ],
+            "bound": 2
+        },
+        {
+            "type": "RequireProvideDependency",
+            "alphaCompId": 1,
+            "betaCompId": 3,
+            "alphaCompIdInstances": 1,
+            "betaCompIdInstances": 7
+        },
+        {
+            "type": "UpperBound",
+            "compsIdList": [
+                3
+            ],
+            "bound": 1
+        },
+        {
+            "type": "RequireProvideDependency",
+            "alphaCompId": 1,
+            "betaCompId": 4,
+            "alphaCompIdInstances": 1,
+            "betaCompIdInstances": 3
+        },
+        {
+            "type": "RequireProvideDependency",
+            "alphaCompId": 1,
+            "betaCompId": 2,
+            "alphaCompIdInstances": 2,
+            "betaCompIdInstances": 3
+        },
+        {
+            "type": "AlternativeComponents",
+            "alphaCompId": 3,
+            "betaCompId": 4
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 3,
+            "compsIdList": [
+                1,
+                2,
+                5
+            ]
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 4,
+            "compsIdList": [
+                1,
+                2,
+                5
+            ]
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 5,
+            "compsIdList": [
+                2,
+                3,
+                4
+            ]
+        }
+    ],
+    "output": {
+        "min_price": 4320,
+        "type_of_sym_br": "FVPR",
+        "time (secs)": 0.8950858116149902,
+        "types_of_VMs": [
+            10,
+            16,
+            16,
+            16,
+            16
+        ],
+        "prices_of_VMs": [
+            480,
+            960,
+            960,
+            960,
+            960
+        ],
+        "VMs specs": [
+            {
+                "s-4vcpu-8gb": {
+                    "cpu": 3150,
+                    "memory": 6850,
+                    "storage": 141000,
+                    "operatingSystem": "Linux",
+                    "price": 480,
+                    "id": 10
+                }
+            },
+            {
+                "s-8vcpu-16gb": {
+                    "cpu": 6950,
+                    "memory": 14450,
+                    "storage": 285000,
+                    "operatingSystem": "Linux",
+                    "price": 960,
+                    "id": 16
+                }
+            }
+        ],
+        "assign_matr": [
+            [
+                0,
+                1,
+                1,
+                1,
+                0
+            ],
+            [
+                1,
+                1,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            [
+                0,
+                0,
+                1,
+                1,
+                0
+            ]
+        ]
+    }
+}

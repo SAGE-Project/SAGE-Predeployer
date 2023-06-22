@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nerthus
+    id: '3'
+  name: nerthus
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nerthus
+  template:
+    metadata:
+      labels:
+        app: nerthus
+      name: nerthus
+    spec:
+      affinity: null
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: nerthus-container
+        resources:
+          requests:
+            cpu: 275m
+            ephemeral-storage: 0Gi
+            memory: 1075Mi
+      schedulerName: boreas-scheduler

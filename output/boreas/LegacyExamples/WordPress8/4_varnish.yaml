@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: varnish
+    id: '5'
+  name: varnish
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: varnish
+  template:
+    metadata:
+      labels:
+        app: varnish
+      name: varnish
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - mysql
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - dnsloadbalancer
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - httploadbalancer
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: varnish-container
+        resources:
+          requests:
+            cpu: 3980m
+            ephemeral-storage: 0Gi
+            memory: 4000Mi
+      schedulerName: boreas-scheduler
