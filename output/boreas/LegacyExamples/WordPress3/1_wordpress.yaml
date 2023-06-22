@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wordpress
+    id: '1'
+  name: wordpress
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+      name: wordpress
+    spec:
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: wordpress-container
+        resources:
+          requests:
+            cpu: 1980m
+            ephemeral-storage: 1Gi
+            memory: 512Mi
+      schedulerName: boreas-scheduler

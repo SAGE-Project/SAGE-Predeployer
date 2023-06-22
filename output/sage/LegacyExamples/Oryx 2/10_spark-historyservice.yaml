@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: spark-historyservice
+    id: '10'
+  name: spark-historyservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-historyservice
+  template:
+    metadata:
+      labels:
+        app: spark-historyservice
+      name: spark-historyservice
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '0'
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: spark-historyservice-container
+        resources:
+          requests:
+            cpu: 500m
+            ephemeral-storage: 2Gi
+            memory: 1000Mi

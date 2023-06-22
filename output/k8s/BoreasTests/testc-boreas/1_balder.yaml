@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: balder
+    id: '1'
+  name: balder
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: balder
+  template:
+    metadata:
+      labels:
+        app: balder
+      name: balder
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - skadi
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: balder-container
+        resources:
+          requests:
+            cpu: 200m
+            ephemeral-storage: 0Gi
+            memory: 700Mi

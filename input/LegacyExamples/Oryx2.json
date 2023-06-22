@@ -1,0 +1,450 @@
+{
+    "application": "Oryx 2",
+    "components": [
+        {
+            "id": 1,
+            "name": "Kafka",
+            "Compute": {
+                "CPU": 500,
+                "GPU": "false",
+                "Memory": 1000
+            },
+            "Storage": {
+                "StorageType": "SSD",
+                "StorageSize": 500
+            },
+            "Network": {
+                "networkConnections": 100,
+                "dataIn": 20000,
+                "dataOut": 20000
+            },
+            "keywords": [
+                "stream processing",
+                "big data application",
+                "queue"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 0,
+                "Storage": 0,
+                "Network": 1
+            }
+        },
+        {
+            "id": 2,
+            "name": "Zookeeper",
+            "Compute": {
+                "CPU": 500,
+                "GPU": "false",
+                "Memory": 500
+            },
+            "Storage": {
+                "StorageType": "SSD",
+                "StorageSize": 500
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 200,
+                "dataOut": 200
+            },
+            "keywords": [
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 0,
+                "Storage": 0,
+                "Network": 1
+            }
+        },
+        {
+            "id": 3,
+            "name": "HDFS.NameNode",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 3800
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 2000
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 200,
+                "dataOut": 200
+            },
+            "keywords": [
+                "platform management",
+                "storage application",
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 1,
+                "Storage": 0,
+                "Network": 0
+            }
+        },
+        {
+            "id": 4,
+            "name": "HDFS.SecondaryNameNode",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 3800
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 2000
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 200,
+                "dataOut": 200
+            },
+            "keywords": [
+                "platform management",
+                "storage application",
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 1,
+                "Storage": 0,
+                "Network": 0
+            }
+        },
+        {
+            "id": 5,
+            "name": "HDFS.DataNode",
+            "Compute": {
+                "CPU": 1000,
+                "GPU": "false",
+                "Memory": 2000
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 3000
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 2000,
+                "dataOut": 2000
+            },
+            "keywords": [
+                "storage application",
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 0,
+                "Storage": 1,
+                "Network": 0
+            }
+        },
+        {
+            "id": 6,
+            "name": "YARN.ResourceManagement",
+            "Compute": {
+                "CPU": 1250,
+                "GPU": "false",
+                "Memory": 2000
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 2000,
+                "dataOut": 2000
+            },
+            "keywords": [
+                "schedueling",
+                "storage application",
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 1,
+                "Storage": 0,
+                "Network": 0
+            }
+        },
+        {
+            "id": 7,
+            "name": "YARN.HistoryService",
+            "Compute": {
+                "CPU": 250,
+                "GPU": "false",
+                "Memory": 500
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 200,
+                "dataOut": 200
+            },
+            "keywords": [
+                "storage application",
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 0,
+                "Storage": 1,
+                "Network": 0
+            }
+        },
+        {
+            "id": 8,
+            "name": "YARN.NodeManager",
+            "Compute": {
+                "CPU": 1000,
+                "GPU": "false",
+                "Memory": 2000
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 2000
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 2000,
+                "dataOut": 2000
+            },
+            "keywords": [
+                "platform management",
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 1,
+                "Storage": 1,
+                "Network": 0
+            }
+        },
+        {
+            "id": 9,
+            "name": "Spark.Worker",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 3400
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 2000,
+                "dataOut": 2000
+            },
+            "keywords": [
+                "platform management",
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 1,
+                "Storage": 1,
+                "Network": 0
+            }
+        },
+        {
+            "id": 10,
+            "name": "Spark.HistoryService",
+            "Compute": {
+                "CPU": 500,
+                "GPU": "false",
+                "Memory": 1000
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 2000
+            },
+            "Network": {
+                "networkConnections": 20,
+                "dataIn": 2000,
+                "dataOut": 2000
+            },
+            "keywords": [
+                "storage application",
+                "big data application"
+            ],
+            "operatingSystem": "Linux",
+            "preferences": {
+                "Compute": 0,
+                "Storage": 1,
+                "Network": 0
+            }
+        }
+    ],
+    "IP": {
+        "publicIPs": 1,
+        "IPType": "IP4"
+    },
+    "comment-restrictions": "FullDeployment of components 5, 8, 9",
+    "restrictions": [
+        {
+            "type": "OneToOneDependency",
+            "alphaCompId": 5,
+            "betaCompId": 9
+        },
+        {
+            "type": "OneToOneDependency",
+            "alphaCompId": 8,
+            "betaCompId": 9
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 1,
+            "compsIdList": [
+                2
+            ]
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 3,
+            "compsIdList": [
+                4
+            ]
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 6,
+            "compsIdList": [
+                3,
+                4,
+                7
+            ]
+        },
+        {
+            "type": "RequireProvideDependency",
+            "alphaCompId": 1,
+            "betaCompId": 2,
+            "alphaCompIdInstances": 2,
+            "betaCompIdInstances": 1
+        },
+        {
+            "type": "FullDeployment",
+            "alphaCompId": 5,
+            "compsIdList": []
+        },
+        {
+            "type": "FullDeployment",
+            "alphaCompId": 8,
+            "compsIdList": []
+        },
+        {
+            "type": "FullDeployment",
+            "alphaCompId": 9,
+            "compsIdList": []
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                2
+            ],
+            "bound": 1
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                7
+            ],
+            "bound": 1
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                10
+            ],
+            "bound": 1
+        }
+    ],
+    "output": {
+        "min_price": 2880,
+        "type_of_sym_br": "FVPR",
+        "time (secs)": 1.5678393840789795,
+        "types_of_VMs": [
+            16,
+            16,
+            16
+        ],
+        "prices_of_VMs": [
+            960,
+            960,
+            960
+        ],
+        "VMs specs": [
+            {
+                "s-8vcpu-16gb": {
+                    "cpu": 6950,
+                    "memory": 14450,
+                    "storage": 285000,
+                    "operatingSystem": "Linux",
+                    "price": 960,
+                    "id": 16
+                }
+            }
+        ],
+        "assign_matr": [
+            [
+                1,
+                0,
+                0
+            ],
+            [
+                0,
+                1,
+                1
+            ],
+            [
+                0,
+                1,
+                0
+            ],
+            [
+                0,
+                0,
+                1
+            ],
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                0,
+                0
+            ],
+            [
+                0,
+                1,
+                0
+            ],
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                0,
+                0
+            ]
+        ]
+    }
+}

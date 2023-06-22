@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: idsserver
+    id: '4'
+  name: idsserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: idsserver
+  template:
+    metadata:
+      labels:
+        app: idsserver
+      name: idsserver
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - balancer
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - apache
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - nginx
+            topologyKey: kubernetes.io/hostname
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - idsagent
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: idsserver-container
+        resources:
+          requests:
+            cpu: 1980m
+            ephemeral-storage: 2Gi
+            memory: 16000Mi
+      schedulerName: boreas-scheduler

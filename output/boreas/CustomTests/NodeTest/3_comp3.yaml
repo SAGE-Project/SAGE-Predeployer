@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: comp3
+    id: '3'
+  name: comp3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comp3
+  template:
+    metadata:
+      labels:
+        app: comp3
+      name: comp3
+    spec:
+      affinity: null
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: comp3-container
+        resources:
+          requests:
+            cpu: 2867m
+            ephemeral-storage: 0Gi
+            memory: 367Mi
+      schedulerName: boreas-scheduler

@@ -1,0 +1,241 @@
+{
+    "application": "SecureWebContainer",
+    "components": [
+        {
+            "id": 1,
+            "name": "Balancer",
+            "Compute": {
+                "CPU": 1000,
+                "GPU": "false",
+                "Memory": 2048
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "httpd",
+            "preferences": {}
+        },
+        {
+            "id": 2,
+            "name": "Apache",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 512
+            },
+            "Storage": {
+                "StorageType": "haproxy",
+                "StorageSize": 1000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "httpd",
+            "preferences": {}
+        },
+        {
+            "id": 3,
+            "name": "Nginx",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 2048
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "nginx",
+            "preferences": {}
+        },
+        {
+            "id": 4,
+            "name": "IDSServer",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 16000
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 2000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "nginx",
+            "preferences": {}
+        },
+        {
+            "id": 5,
+            "name": "IDSAgent",
+            "Compute": {
+                "CPU": 1000,
+                "GPU": "false",
+                "Memory": 256
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 250
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "nginx",
+            "preferences": {}
+        }
+    ],
+    "IP": {
+        "publicIPs": 1,
+        "IPType": "IP4"
+    },
+    "comment-restrictions": "Number 3 from LowerBound below is LoR=LevelOfRedundancy; FullDeployment: compsIdList: the list of components that component alpha is in conflict with",
+    "restrictions": [
+        {
+            "type": "Conflicts",
+            "alphaCompId": 1,
+            "compsIdList": [
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 2,
+            "compsIdList": [
+                3
+            ]
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                1
+            ],
+            "bound": 1
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                1,
+                2
+            ],
+            "bound": 3
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 4,
+            "compsIdList": [
+                1,
+                2,
+                3,
+                5
+            ]
+        },
+        {
+            "type": "FullDeployment",
+            "alphaCompId": 5,
+            "compsIdList": [
+                4,
+                1
+            ]
+        },
+        {
+            "type": "OneToManyDependency",
+            "alphaCompId": 4,
+            "betaCompId": 5,
+            "number": 10
+        }
+    ],
+    "output": {
+        "min_price": 3360,
+        "type_of_sym_br": "FVPR",
+        "time (secs)": 0.09170317649841309,
+        "types_of_VMs": [
+            7,
+            24,
+            10,
+            10,
+            10
+        ],
+        "prices_of_VMs": [
+            240,
+            1680,
+            480,
+            480,
+            480
+        ],
+        "VMs specs": [
+            {
+                "s-2vcpu-4gb": {
+                    "cpu": 1800,
+                    "memory": 3150,
+                    "storage": 69000,
+                    "operatingSystem": "nginx",
+                    "price": 240,
+                    "id": 7
+                }
+            },
+            {
+                "s-4vcpu-8gb": {
+                    "cpu": 3600,
+                    "memory": 6750,
+                    "storage": 141000,
+                    "operatingSystem": "nginx",
+                    "price": 480,
+                    "id": 10
+                }
+            },
+            {
+                "m-4vcpu-32gb": {
+                    "cpu": 3600,
+                    "memory": 28350,
+                    "storage": 87000,
+                    "operatingSystem": "nginx",
+                    "price": 1680,
+                    "id": 24
+                }
+            }
+        ],
+        "assign_matr": [
+            [
+                1,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                1,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                1,
+                1
+            ],
+            [
+                0,
+                1,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                1,
+                1,
+                1
+            ]
+        ]
+    }
+}

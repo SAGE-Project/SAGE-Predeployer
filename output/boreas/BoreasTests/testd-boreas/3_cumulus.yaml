@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cumulus
+    id: '3'
+  name: cumulus
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cumulus
+  template:
+    metadata:
+      labels:
+        app: cumulus
+      name: cumulus
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - asperitas
+            topologyKey: kubernetes.io/hostname
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - cumulus
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: cumulus-container
+        resources:
+          requests:
+            cpu: 180m
+            ephemeral-storage: 0Gi
+            memory: 780Mi
+      schedulerName: boreas-scheduler

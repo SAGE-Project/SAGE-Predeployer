@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cirrus
+    id: '2'
+  name: cirrus
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cirrus
+  template:
+    metadata:
+      labels:
+        app: cirrus
+      name: cirrus
+    spec:
+      affinity: null
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: cirrus-container
+        resources:
+          requests:
+            cpu: 200m
+            ephemeral-storage: 0Gi
+            memory: 800Mi

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hdfs-secondarynamenode
+    id: '4'
+  name: hdfs-secondarynamenode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hdfs-secondarynamenode
+  template:
+    metadata:
+      labels:
+        app: hdfs-secondarynamenode
+      name: hdfs-secondarynamenode
+    spec:
+      affinity: null
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: hdfs-secondarynamenode-container
+        resources:
+          requests:
+            cpu: 1990m
+            ephemeral-storage: 2Gi
+            memory: 3790Mi
+      schedulerName: boreas-scheduler

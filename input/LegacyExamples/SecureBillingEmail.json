@@ -1,0 +1,186 @@
+{
+    "application": "SecureBillingEmail",
+    "components": [
+        {
+            "id": 1,
+            "name": "Coding Service",
+            "Compute": {
+                "CPU": 4000,
+                "GPU": "false",
+                "Memory": 4096
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1024
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "",
+            "preferences": {
+                "Compute": 1,
+                "Storage": 1,
+                "Network": 0
+            }
+        },
+        {
+            "id": 2,
+            "name": "Security Manager",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 2048
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 512
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "",
+            "preferences": {}
+        },
+        {
+            "id": 3,
+            "name": "Gateway",
+            "Compute": {
+                "CPU": 4000,
+                "GPU": "false",
+                "Memory": 4096
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 512
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "",
+            "preferences": {}
+        },
+        {
+            "id": 4,
+            "name": "SQLServer",
+            "Compute": {
+                "CPU": 2000,
+                "GPU": "false",
+                "Memory": 512
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 2000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "",
+            "preferences": {}
+        },
+        {
+            "id": 5,
+            "name": "LoadBalancer",
+            "Compute": {
+                "CPU": 4000,
+                "GPU": "false",
+                "Memory": 2048
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "",
+            "preferences": {}
+        }
+    ],
+    "IP": {
+        "publicIPs": 1,
+        "IPType": "IP4"
+    },
+    "restrictions": [
+        {
+            "type": "Conflicts",
+            "alphaCompId": 1,
+            "compsIdList": [
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 5,
+            "compsIdList": [
+                3,
+                4
+            ]
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                1
+            ],
+            "bound": 1
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                5
+            ],
+            "bound": 1
+        }
+    ],
+    "output": {
+        "min_price": 2880,
+        "type_of_sym_br": "FVPR",
+        "time (secs)": 0.4146130084991455,
+        "types_of_VMs": [
+            16,
+            16,
+            16
+        ],
+        "prices_of_VMs": [
+            960,
+            960,
+            960
+        ],
+        "VMs specs": [
+            {
+                "s-8vcpu-16gb": {
+                    "cpu": 6950,
+                    "memory": 14450,
+                    "storage": 285000,
+                    "operatingSystem": "Linux",
+                    "price": 960,
+                    "id": 16
+                }
+            }
+        ],
+        "assign_matr": [
+            [
+                1,
+                0,
+                0
+            ],
+            [
+                0,
+                1,
+                0
+            ],
+            [
+                0,
+                0,
+                1
+            ],
+            [
+                0,
+                0,
+                1
+            ],
+            [
+                0,
+                1,
+                0
+            ]
+        ]
+    }
+}

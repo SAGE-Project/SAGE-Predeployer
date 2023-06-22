@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "predeployer"
+version = "0.1.0"
+description = ""
+authors = ["Vlad Luca <lucavlad50@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+black = "^22.12.0"
+jinja2 = "^3.1.2"
+pyyaml = "^6.0"
+kubernetes = "^25.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

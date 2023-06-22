@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+    id: '2'
+  name: mysql
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+      name: mysql
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '0'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '1'
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: mysql-container
+        resources:
+          requests:
+            cpu: 2000m
+            ephemeral-storage: 2Gi
+            memory: 512Mi

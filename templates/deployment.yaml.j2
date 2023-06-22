@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    id: "{{ obj.id }}"
+    app: {{ obj.name }}
+  name: {{ obj.name }}
+spec:
+  replicas: {{ obj.nodes|length }}
+#  minAvailable: 2
+#  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: {{ obj.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ obj.name }}
+#        environment: production
+      name: {{ obj.name }}
+    spec:
+      affinity:
+    {% if obj.conflicts != [] %}
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            {% for conflict in obj.conflicts %}
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - {{ conflict }}
+              topologyKey: kubernetes.io/hostname
+            {% endfor %}
+    {% endif %}
+    {% if obj.collocations != [] %}
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            {% for collocation in obj.collocations %}
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - {{ collocation }}
+              topologyKey: kubernetes.io/hostname
+            {% endfor %}
+    {% endif %}
+      # specifies on which node to be put
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            {% for node in obj.nodes %}
+              - matchExpressions:
+                - key: index
+                  operator: In
+                  values:
+                    - "{{ node }}"
+            {% endfor %}
+      containers:
+      - name: {{ obj.name }}-container
+        image: {{ obj.operating_system }}
+        {% if obj.compute  %}
+        resources:
+          requests:
+            {% if obj.compute['cpu'] != 0 %}
+              cpu: "{{ obj.compute['cpu'] }}m"
+            {% endif %}
+            {% if obj.compute['memory'] != 0 %}
+              memory: "{{ obj.compute['memory'] }}Mi"
+            {% endif %}
+            {% if obj.storage %}
+              ephemeral-storage: "{{ obj.storage['size'] }}Gi"
+            {% endif %}
+        {% endif %}

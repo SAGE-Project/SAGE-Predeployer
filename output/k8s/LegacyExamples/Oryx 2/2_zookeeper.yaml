@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: zookeeper
+    id: '2'
+  name: zookeeper
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+      name: zookeeper
+    spec:
+      affinity: null
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: zookeeper-container
+        resources:
+          requests:
+            cpu: 500m
+            ephemeral-storage: 0Gi
+            memory: 500Mi

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sqlserver
+    id: '4'
+  name: sqlserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqlserver
+  template:
+    metadata:
+      labels:
+        app: sqlserver
+      name: sqlserver
+    spec:
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: sqlserver-container
+        resources:
+          requests:
+            cpu: 2000m
+            ephemeral-storage: 2Gi
+            memory: 512Mi

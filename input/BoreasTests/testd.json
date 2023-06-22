@@ -1,0 +1,242 @@
+{
+    "application": "testd-boreas",
+    "comment-general": "",
+    "components": [
+        {
+            "id": 1,
+            "name": "asperitas",
+            "Compute": {
+                "CPU": 400,
+                "GPU": "false",
+                "Memory": 1800
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 2,
+            "name": "cirrus",
+            "Compute": {
+                "CPU": 200,
+                "GPU": "false",
+                "Memory": 900
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 3,
+            "name": "cumulus",
+            "Compute": {
+                "CPU": 200,
+                "GPU": "false",
+                "Memory": 900
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 4,
+            "name": "nimbus",
+            "Compute": {
+                "CPU": 200,
+                "GPU": "false",
+                "Memory": 900
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 5,
+            "name": "stratus",
+            "Compute": {
+                "CPU": 200,
+                "GPU": "false",
+                "Memory": 900
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        }
+    ],
+    "IP": {
+        "publicIPs": 1,
+        "IPType": "IP4"
+    },
+    "restrictions": [
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                1
+            ],
+            "bound": 3
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                2
+            ],
+            "bound": 2
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                3
+            ],
+            "bound": 3
+        },
+        {
+            "type": "OneToOneDependency",
+            "alphaCompId": 3,
+            "betaCompId": 1
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                4
+            ],
+            "bound": 2
+        },
+        {
+            "type": "Conflicts",
+            "alphaCompId": 4,
+            "compsIdList": [
+                1
+            ]
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                5
+            ],
+            "bound": 4
+        },
+        {
+            "type": "FullDeployment",
+            "alphaCompId": 1,
+            "compsIdList": []
+        },
+        {
+            "type": "FullDeployment",
+            "alphaCompId": 3,
+            "compsIdList": []
+        },
+        {
+            "type": "FullDeployment",
+            "alphaCompId": 4,
+            "compsIdList": []
+        },
+        {
+            "type": "FullDeployment",
+            "alphaCompId": 5,
+            "compsIdList": []
+        }
+    ],
+    "output": {
+        "min_price": 1680,
+        "type_of_sym_br": "FVPR",
+        "time (secs)": 0.5033490657806396,
+        "types_of_VMs": [
+            7,
+            7,
+            10,
+            10,
+            7
+        ],
+        "prices_of_VMs": [
+            240,
+            240,
+            480,
+            480,
+            240
+        ],
+        "VMs specs": [
+            {
+                "s-2vcpu-4gb": {
+                    "cpu": 1250,
+                    "memory": 3050,
+                    "storage": 69000,
+                    "operatingSystem": "Linux",
+                    "price": 240,
+                    "id": 7
+                }
+            },
+            {
+                "s-4vcpu-8gb": {
+                    "cpu": 3150,
+                    "memory": 6850,
+                    "storage": 141000,
+                    "operatingSystem": "Linux",
+                    "price": 480,
+                    "id": 10
+                }
+            }
+        ],
+        "assign_matr": [
+            [
+                1,
+                0,
+                1,
+                1,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                1,
+                1
+            ],
+            [
+                1,
+                0,
+                1,
+                1,
+                0
+            ],
+            [
+                0,
+                1,
+                0,
+                0,
+                1
+            ],
+            [
+                0,
+                1,
+                1,
+                1,
+                1
+            ]
+        ]
+    }
+}

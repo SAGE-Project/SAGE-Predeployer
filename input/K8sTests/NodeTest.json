@@ -1,0 +1,135 @@
+{
+    "application": "NodeTest",
+    "comment-general": "",
+    "components": [
+        {
+            "id": 1,
+            "name": "comp1",
+            "Compute": {
+                "CPU": 500,
+                "GPU": "false",
+                "Memory": 150
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 2,
+            "name": "comp2",
+            "Compute": {
+                "CPU": 500,
+                "GPU": "false",
+                "Memory": 150
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 1000
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 3,
+            "name": "comp3",
+            "comments": "As load balancers, either DNS or HTTP",
+            "Compute": {
+                "CPU": 2900,
+                "GPU": "false",
+                "Memory": 400
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        }
+    ],
+    "IP": {
+        "publicIPs": 1,
+        "IPType": "IP4"
+    },
+    "comment-restrictions": "RequireProvideDependency to be read as: for 1 instance of component with id 2 there must be at least ",
+    "restrictions": [
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                1
+            ],
+            "bound": 1
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                2
+            ],
+            "bound": 1
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                3
+            ],
+            "bound": 1
+        }
+    ],
+    "output": {
+        "min_price": 660,
+        "type_of_sym_br": "FVPR",
+        "time (secs)": 0.19034790992736816,
+        "types_of_VMs": [
+            10,
+            4
+        ],
+        "prices_of_VMs": [
+            480,
+            180
+        ],
+        "VMs specs": [
+            {
+                "s-2vcpu-2gb": {
+                    "cpu": 1250,
+                    "memory": 1150,
+                    "storage": 51000,
+                    "operatingSystem": "Linux",
+                    "price": 180,
+                    "id": 4
+                }
+            },
+            {
+                "s-4vcpu-8gb": {
+                    "cpu": 3150,
+                    "memory": 6850,
+                    "storage": 141000,
+                    "operatingSystem": "Linux",
+                    "price": 480,
+                    "id": 10
+                }
+            }
+        ],
+        "assign_matr": [
+            [
+                0,
+                1
+            ],
+            [
+                0,
+                1
+            ],
+            [
+                1,
+                0
+            ]
+        ]
+    }
+}

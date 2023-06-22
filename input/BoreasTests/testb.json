@@ -1,0 +1,202 @@
+{
+    "application": "testb-boreas",
+    "comment-general": "",
+    "components": [
+        {
+            "id": 1,
+            "name": "balder",
+            "Compute": {
+                "CPU": 200,
+                "GPU": "false",
+                "Memory": 800
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 2,
+            "name": "freyja",
+            "Compute": {
+                "CPU": 300,
+                "GPU": "false",
+                "Memory": 1200
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 3,
+            "name": "nerthus",
+            "Compute": {
+                "CPU": 300,
+                "GPU": "false",
+                "Memory": 1200
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        },
+        {
+            "id": 4,
+            "name": "skadi",
+            "Compute": {
+                "CPU": 200,
+                "GPU": "false",
+                "Memory": 800
+            },
+            "Storage": {
+                "StorageType": "HDD",
+                "StorageSize": 500
+            },
+            "Network": {},
+            "keywords": [],
+            "operatingSystem": "Linux",
+            "preferences": {}
+        }
+    ],
+    "IP": {
+        "publicIPs": 1,
+        "IPType": "IP4"
+    },
+    "restrictions": [
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                1
+            ],
+            "bound": 4
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                2
+            ],
+            "bound": 4
+        },
+        {
+            "type": "OneToOneDependency",
+            "alphaCompId": 2,
+            "betaCompId": 3
+        },
+        {
+            "type": "EqualBound",
+            "compsIdList": [
+                3
+            ],
+            "bound": 4
+        },
+        {
+            "type": "LowerBound",
+            "compsIdList": [
+                4
+            ],
+            "bound": 8
+        }
+    ],
+    "output": {
+        "min_price": 2400,
+        "type_of_sym_br": "FVPR",
+        "time (secs)": 3.339360237121582,
+        "types_of_VMs": [
+            1,
+            1,
+            10,
+            10,
+            10,
+            1,
+            10,
+            1
+        ],
+        "prices_of_VMs": [
+            120,
+            120,
+            480,
+            480,
+            480,
+            120,
+            480,
+            120
+        ],
+        "VMs specs": [
+            {
+                "s-1vcpu-2gb": {
+                    "cpu": 300,
+                    "memory": 1150,
+                    "storage": 42000,
+                    "operatingSystem": "Linux",
+                    "price": 120,
+                    "id": 1
+                }
+            },
+            {
+                "s-4vcpu-8gb": {
+                    "cpu": 3150,
+                    "memory": 6850,
+                    "storage": 141000,
+                    "operatingSystem": "Linux",
+                    "price": 480,
+                    "id": 10
+                }
+            }
+        ],
+        "assign_matr": [
+            [
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                0
+            ],
+            [
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                0
+            ],
+            [
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                0
+            ],
+            [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            ]
+        ]
+    }
+}

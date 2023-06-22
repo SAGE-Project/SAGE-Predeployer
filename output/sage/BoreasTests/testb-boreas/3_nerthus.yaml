@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nerthus
+    id: '3'
+  name: nerthus
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nerthus
+  template:
+    metadata:
+      labels:
+        app: nerthus
+      name: nerthus
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '2'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '3'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '4'
+            - matchExpressions:
+              - key: index
+                operator: In
+                values:
+                - '6'
+      containers:
+      - image: k8s.gcr.io/pause:2.0
+        name: nerthus-container
+        resources:
+          requests:
+            cpu: 300m
+            ephemeral-storage: 0Gi
+            memory: 1200Mi
